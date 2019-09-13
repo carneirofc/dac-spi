@@ -1,0 +1,3 @@
+[submodule "BeagleBone-GPIO"]	
+	url = https://github.com/ehayon/BeagleBone-GPIO.git
+	path = vendor/BeagleBone-GPIO
