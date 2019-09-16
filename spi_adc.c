@@ -21,6 +21,8 @@
 #include <linux/types.h>
 #include <linux/spi/spidev.h>
 
+#include "gpio.h"
+
 #define ARRAY_SIZE(a) (sizeof(a) / sizeof((a)[0]))
 
 static void pabort(const char *s)
@@ -55,12 +57,12 @@ static void transfer(int fd, uint8_t *tx, uint8_t *rx)
 	if (ret < 1)
 		pabort("can't send spi message");
 
-        printf("In "); 
+        printf("In ");
 	int i=0;
         for (i= 0; i< ARRAY_SIZE(tx); i++) {
 		printf("%.2X ", tx[i]);
 	}
-        printf(" Out "); 
+	printf(" Out ");
         for (ret = 0; ret < ARRAY_SIZE(rx); ret++) {
 		printf("%.2X ", rx[ret]);
 	}
@@ -162,7 +164,6 @@ int main(int argc, char *argv[])
 	int fd;
 	uint8_t tx[2] = {0x83, 0x10};
         uint8_t rx[ARRAY_SIZE(tx)] = {0, };
-	
 
 	parse_opts(argc, argv);
 
@@ -206,13 +207,12 @@ int main(int argc, char *argv[])
 	printf("spi mode: %d\n", mode);
 	printf("bits per word: %d\n", bits);
 	printf("max speed: %d Hz (%d KHz)\n", speed, speed/1000);
-        
-        //uint8_t rx[ARRAY_SIZE(tx)] = {0, };
+
+    //uint8_t rx[ARRAY_SIZE(tx)] = {0, };
 	for(int i = 0; i < 10; i++){
 		transfer(fd, tx, rx);
 		printf(" %i\n", post_process(rx));
 	}
-	        
 
 	close(fd);
 

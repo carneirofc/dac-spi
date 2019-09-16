@@ -1,4 +1,4 @@
-#[submodule "BeagleBone-GPIO"]	
+#[submodule "BeagleBone-GPIO"]
 #	path = vendor/BeagleBone-GPIO
 #	url = https://github.com/ehayon/BeagleBone-GPIO.git
 
