@@ -1,5 +1,7 @@
 #!/bin/bash
 set -x
 set -e
-# /opt/pru/vendor/BeagleBone-GPIO/src/gpio.c
-gcc -O3 spi_adc.c ./vendor/BeagleBone-GPIO/src/gpio.c -o spi
+INC=-I./vendor/BeagleBone-GPIO/src
+SRC=
+
+gcc -O3 spi_adc.c $SRC $INC -o spi

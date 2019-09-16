@@ -46,12 +46,9 @@ static void transfer(int fd, uint8_t *tx, uint8_t *rx)
 		.tx_buf = (unsigned long)tx,
 		.rx_buf = (unsigned long)rx,
 		.len = ARRAY_SIZE(tx),
-		.delay_usecs = 0,
-		.speed_hz = 0,
-		.bits_per_word = 0,
-		//.delay_usecs = delay,
-		//.speed_hz = speed,
-		//.bits_per_word = bits,
+		.delay_usecs = delay,
+		.speed_hz = speed,
+		.bits_per_word = bits,
 	};
 
 	ret = ioctl(fd, SPI_IOC_MESSAGE(1), &tr);
@@ -211,7 +208,7 @@ int main(int argc, char *argv[])
 	printf("max speed: %d Hz (%d KHz)\n", speed, speed/1000);
         
         //uint8_t rx[ARRAY_SIZE(tx)] = {0, };
-	for(int i = 0; i < 1000; i++){
+	for(int i = 0; i < 10; i++){
 		transfer(fd, tx, rx);
 		printf(" %i\n", post_process(rx));
 	}
