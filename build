@@ -1,7 +1,7 @@
 #!/bin/bash
 set -x
 set -e
-INC=-I./vendor/BeagleBone-GPIO/src
+INC=
 SRC=
 
 gcc -O3 spi_adc.c $SRC $INC -o spi
